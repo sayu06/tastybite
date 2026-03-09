@@ -1,81 +1,156 @@
-let cart = [];
-let totalPrice = 0;
+let cart=[]
+let total=0
 
 function addToCart(name, price){
-    cart.push({name, price});
-    totalPrice += price;
-    updateCart();
+    cart.push({name, price})
+    total += price
+    document.getElementById("cart-count").innerText = cart.length
+    displayCart()
 }
 
-function updateCart(){
-    document.getElementById("cart-count").innerText = cart.length;
-    document.getElementById("total-price").innerText = totalPrice;
-
-    let cartItems = document.getElementById("cart-items");
-    cartItems.innerHTML = "";
-
-    cart.forEach((item,index)=>{
-        cartItems.innerHTML += `
-            <div class="cart-item">
-                <p>${item.name} - ₹${item.price}</p>
-                <button onclick="removeItem(${index})">Remove</button>
-            </div>
-        `;
-    });
+function displayCart(){
+    let items = ""
+    cart.forEach((item, index) => {
+        items += `<p>${item.name} - ₹${item.price} 
+        <button onclick="removeItem(${index})">X</button></p>`
+    })
+    document.getElementById("cart-items").innerHTML = items
+    document.getElementById("total").innerText = total
 }
 
 function removeItem(index){
-    totalPrice -= cart[index].price;
-    cart.splice(index,1);
-    updateCart();
+    total -= cart[index].price
+    cart.splice(index,1)
+    displayCart()
+    document.getElementById("cart-count").innerText = cart.length
 }
 
 function toggleCart(){
-    document.getElementById("cart-sidebar").classList.toggle("active");
-}
-
-function showAddressForm(){
-    if(cart.length === 0){
-        alert("Cart is empty!");
-        return;
+    let cartBox = document.getElementById("cart")
+    if(cartBox.style.right=="0px"){
+        cartBox.style.right="-350px"
+    } else {
+        cartBox.style.right="0px"
     }
-    document.getElementById("address-form").style.display="block";
 }
 
+// SHOW DELIVERY DETAILS INSIDE CART
+function showCheckout(){
+    if(cart.length == 0){
+        alert("Cart is empty")
+        return
+    }
+    document.getElementById("checkout-form").style.display = "block"
+}
+
+// PLACE ORDER
 function placeOrder(){
-
-    let name = document.getElementById("cust-name").value;
-    let phone = document.getElementById("cust-phone").value;
-    let address = document.getElementById("cust-address").value;
-
-    if(name==="" || phone==="" || address===""){
-        alert("Please fill all details!");
-        return;
+    if(cart.length==0){
+        alert("Cart is empty")
+        return
     }
 
-    let orderHTML=`
-        <div class="order-card">
-            <h3>Order by: ${name}</h3>
-            <p><strong>Phone:</strong> ${phone}</p>
-            <p><strong>Address:</strong> ${address}</p>
-            <ul>
-                ${cart.map(item=>`<li>${item.name} - ₹${item.price}</li>`).join("")}
-            </ul>
-            <p><strong>Total:</strong> ₹${totalPrice}</p>
-            <p>Status: Ordered ✅</p>
-        </div>
-    `;
+    let name = document.getElementById("cust-name").value
+    let phone = document.getElementById("cust-phone").value
+    let address = document.getElementById("cust-address").value
 
-    document.getElementById("order-history-list").innerHTML += orderHTML;
+    if(name=="" || phone=="" || address==""){
+        alert("Please fill delivery details")
+        return
+    }
 
-    alert("Order Placed Successfully 🎉");
+    let payment = document.querySelector('input[name="payment"]:checked')
+    if(!payment){
+        alert("Please select a payment method")
+        return
+    }
 
-    cart=[];
-    totalPrice=0;
-    updateCart();
+    alert(`Order Placed Successfully 🍕\nPayment: ${payment.value}`)
 
-    document.getElementById("address-form").style.display="none";
-    document.getElementById("cust-name").value="";
-    document.getElementById("cust-phone").value="";
-    document.getElementById("cust-address").value="";
+    // Clear cart
+    cart=[]
+    total=0
+    displayCart()
+    document.getElementById("cart-count").innerText = 0
+
+    // Hide checkout form
+    document.getElementById("checkout-form").style.display="none"
+
+    // Clear form
+    document.getElementById("cust-name").value=""
+    document.getElementById("cust-phone").value=""
+    document.getElementById("cust-address").value=""
+    let payments = document.querySelectorAll('input[name="payment"]')
+    payments.forEach(p=>p.checked=false)
+
+    
 }
+function placeOrder(){
+    if(cart.length==0){
+        alert("Cart is empty")
+        return
+    }
+
+    let name = document.getElementById("cust-name").value
+    let phone = document.getElementById("cust-phone").value
+    let address = document.getElementById("cust-address").value
+
+    if(name=="" || phone=="" || address==""){
+        alert("Please fill delivery details")
+        return
+    }
+
+    let payment = document.querySelector('input[name="payment"]:checked')
+    if(!payment){
+        alert("Please select a payment method")
+        return
+    }
+
+    // Record order in history
+    let orderDetails = `
+    <p>
+    <strong>Name:</strong> ${name} <br>
+    <strong>Phone:</strong> ${phone} <br>
+    <strong>Address:</strong> ${address} <br>
+    <strong>Payment:</strong> ${payment.value} <br>
+    <strong>Items:</strong> ${cart.map(i=>i.name+" (₹"+i.price+")").join(", ")} <br>
+    <strong>Total:</strong> ₹${total}
+    </p>
+    <hr>
+    `
+
+    document.getElementById("orders").innerHTML += orderDetails
+
+    alert("Order Placed Successfully 🍕")
+
+    // Clear cart
+    cart=[]
+    total=0
+    displayCart()
+    document.getElementById("cart-count").innerText = 0
+
+    // Hide checkout form
+    document.getElementById("checkout-form").style.display="none"
+
+    // Close cart sidebar
+    document.getElementById("cart").style.right="-400px"
+
+    // Clear form
+    document.getElementById("cust-name").value=""
+    document.getElementById("cust-phone").value=""
+    document.getElementById("cust-address").value=""
+    let payments = document.querySelectorAll('input[name="payment"]')
+    payments.forEach(p=>p.checked=false)
+}
+const categories = document.querySelectorAll(".category-btn");
+
+categories.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const container = btn.nextElementSibling; // next div.menu-container
+    if(container.style.display === "flex"){
+      container.style.display = "none";
+    } else {
+      container.style.display = "flex";
+    }
+  });
+});

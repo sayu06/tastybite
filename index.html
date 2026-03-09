@@ -1,117 +1,158 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TastyBite</title>
-<link rel="stylesheet" href="tastestyle.css">
+<link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
 
 <header>
-    <h1>TastyBite 🍕</h1>
-    <div class="cart-icon" onclick="toggleCart()">
-        🛒 <span id="cart-count">0</span>
-    </div>
+
+<h1>TastyBite 🍕</h1>
+
+<nav>
+<a href="#">Home</a>
+<a href="#menu">Menu</a>
+<a href="#cart">Cart</a>
+</nav>
+
+<div class="cart-icon" onclick="toggleCart()">
+🛒 <span id="cart-count">0</span>
+</div>
+
 </header>
 
-<!-- Banner -->
+
 <section class="banner">
-    <img src="banner.jpg" alt="Banner">
+<img src="banner.jpg">
 </section>
 
-<!-- Menu -->
-<section class="menu">
-    <h2>Our Menu</h2>
 
+<section id="menu" class="menu">
+  <h2>Our Menu</h2>
+
+  <!-- Veg Pizzas -->
+  <button class="category-btn">Veg Pizzas 🍕</button>
+  <div class="menu-container">
     <div class="menu-item">
-        <img src="margrita.jpg" class="menu-image">
-        <h3>Margherita Pizza</h3>
-        <p>₹200</p>
-        <button onclick="addToCart('Margherita Pizza',200)">Order Now</button>
+      <img src="margrita.jpg" alt="Margherita Pizza">
+      <h4>Margherita Pizza</h4>
+      <p>₹200</p>
+      <button onclick="addToCart('Margherita Pizza',200)">Add to Cart</button>
     </div>
 
     <div class="menu-item">
-        <img src="peppy.jpg" class="menu-image">
-        <h3>Paneer Pizza</h3>
-        <p>₹250</p>
-        <button onclick="addToCart('Paneer Pizza',250)">Order Now</button>
+      <img src="peppy.jpg" alt="Paneer Pizza">
+      <h4>Paneer Pizza</h4>
+      <p>₹250</p>
+      <button onclick="addToCart('Paneer Pizza',250)">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Non-Veg Pizzas -->
+  <button class="category-btn">Non-Veg Pizzas 🍗</button>
+  <div class="menu-container">
+    <div class="menu-item">
+      <img src="chicken.jpg" alt="Chicken Pizza">
+      <h4>Chicken Pizza</h4>
+      <p>₹300</p>
+      <button onclick="addToCart('Chicken Pizza',300)">Add to Cart</button>
     </div>
 
     <div class="menu-item">
-        <img src="peri.jpg" class="menu-image">
-        <h3>Peppy Pizza</h3>
-        <p>₹300</p>
-        <button onclick="addToCart('Peppy Pizza',300)">Order Now</button>
+      <img src="pepperoni.jpg" alt="Pepperoni Pizza">
+      <h4>Pepperoni Pizza</h4>
+      <p>₹350</p>
+      <button onclick="addToCart('Pepperoni Pizza',350)">Add to Cart</button>
     </div>
+  </div>
+
+  <!-- Beverages -->
+  <button class="category-btn">Beverages 🥤</button>
+  <div class="menu-container">
+    <div class="menu-item">
+      <img src="cola.jpg" alt="Coca Cola">
+      <h4>Coca Cola</h4>
+      <p>₹50</p>
+      <button onclick="addToCart('Coca Cola',50)">Add to Cart</button>
+    </div>
+    <div class="menu-item">
+      <img src="sprite.jpg" alt="Sprite">
+      <h4>Sprite</h4>
+      <p>₹50</p>
+      <button onclick="addToCart('Sprite',50)">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Desserts -->
+  <button class="category-btn">Desserts 🍰</button>
+  <div class="menu-container">
+    <div class="menu-item">
+      <img src="brownie.jpg" alt="Chocolate Brownie">
+      <h4>Chocolate Brownie</h4>
+      <p>₹100</p>
+      <button onclick="addToCart('Chocolate Brownie',100)">Add to Cart</button>
+    </div>
+    <div class="menu-item">
+      <img src="icecream.jpg" alt="Ice Cream">
+      <h4>Ice Cream</h4>
+      <p>₹80</p>
+      <button onclick="addToCart('Ice Cream',80)">Add to Cart</button>
+    </div>
+  </div>
+
 </section>
-
 <!-- CART SIDEBAR -->
-<div id="cart-sidebar" class="cart-sidebar">
+<div id="cart" class="cart">
 
-    <h2>Your Cart</h2>
+<h2>Your Cart</h2>
 
-    <div id="cart-items"></div>
+<div id="cart-items"></div>
 
-    <h3>Total: ₹<span id="total-price">0</span></h3>
+<h3>Total ₹<span id="total">0</span></h3>
 
-    <button onclick="showAddressForm()">Proceed</button>
-    <button class="close-btn" onclick="toggleCart()">Close</button>
+<button onclick="showCheckout()">Checkout</button>
+<button onclick="toggleCart()">Close</button>
 
-    <!-- ADDRESS FORM INSIDE CART -->
-    <div id="address-form" class="address-form">
-        <h3>Delivery Details</h3>
+<!-- DELIVERY DETAILS (hidden by default) -->
+<div id="checkout-form" style="display:none; margin-top:20px;">
 
-        <input type="text" id="cust-name" placeholder="Full Name">
-        <input type="text" id="cust-phone" placeholder="Phone Number">
-        <textarea id="cust-address" placeholder="Full Address"></textarea>
+<h3>Delivery Details</h3>
+<input type="text" id="cust-name" placeholder="Full Name">
+<input type="text" id="cust-phone" placeholder="Phone Number">
+<textarea id="cust-address" placeholder="Delivery Address"></textarea>
 
-        <button onclick="placeOrder()">Place Order</button>
-    </div>
+<h3>Select Payment</h3>
+<label><input type="radio" name="payment" value="UPI"> UPI</label>
+<label><input type="radio" name="payment" value="Card"> Card</label>
+<label><input type="radio" name="payment" value="COD"> Cash On Delivery</label>
+
+<br><br>
+<button onclick="placeOrder()">Place Order</button>
 
 </div>
 
-<!-- Order History -->
-<section class="order-history">
-    <h2>Order History</h2>
-    <div id="order-history-list"></div>
+</div>
+
+
+<section id="order-history" class="history">
+<h2>Order History</h2>
+<div id="orders"></div>
 </section>
+
+
+<footer>
+
+<p>© 2025 TastyBite | Made for Competition 🍕</p>
+
+</footer>
+
 
 <script src="script.js"></script>
 
-<!-- FOOTER SECTION -->
-<footer class="footer">
-
-    <div class="footer-container">
-
-        <div class="footer-box">
-            <h3>TastyBite 🍕</h3>
-            <p>Serving happiness with every slice. Fresh ingredients, fast delivery, and delicious taste guaranteed!</p>
-        </div>
-
-        <div class="footer-box">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">Cart</a></li>
-                <li><a href="#">Order History</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-box">
-            <h3>Contact Us</h3>
-            <p>📍 Mumbai, India</p>
-            <p>📞 +91 9876543210</p>
-            <p>📧 support@tastybite.com</p>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        <p>© 2025 TastyBite | All Rights Reserved</p>
-    </div>
-
-</footer>
 </body>
 </html>
+```
