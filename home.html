@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>TastyBite</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<header>
+
+<h1>TastyBite 🍕</h1>
+
+<nav>
+<a href="#">Home</a>
+<a href="#about">About</a>
+<a href="#menu">Menu</a>
+<a href="#order-history">Order History</a>
+</nav>
+
+<div class="cart-icon" onclick="toggleCart()">
+🛒 <span id="cart-count">0</span>
+</div>
+
+</header>
+
+
+<section class="banner">
+<img src="banner.jpg">
+</section>
+
+<section id="about" class="about">
+
+<h2>About TastyBite</h2>
+
+<div class="about-container">
+
+<div class="about-text">
+<p>
+Welcome to <b>TastyBite</b> 🍕 — your favorite place for delicious pizzas, burgers, and combos.
+We focus on fresh ingredients, fast delivery, and amazing taste.
+</p>
+
+<p>
+Our chefs prepare every meal with love and quality ingredients to give you
+the best fast-food experience. Whether you want a quick snack or a full meal,
+TastyBite has something for everyone.
+</p>
+
+<p>
+Order online and enjoy hot, fresh food delivered straight to your door!
+</p>
+</div>
+
+<div class="about-img">
+<img src="tastybitelogo.png" alt="TastyBite Restaurant">
+</div>
+
+</div>
+
+</section> 
+
+<section id="menu">
+<h2 id="h-menu">Our Menu</h2>
+
+<!-- Veg Pizzas -->
+<div class="category">
+<h3 class="h-cat">Veg Pizzas 🍕</h3>
+
+<div class="slider">
+<button class="slide-btn left" onclick="slideLeft(this)">❮</button>
+
+<div class="menu-container">
+
+<div class="menu-item">
+<img src="margrita.jpg">
+<h4>Margherita Pizza</h4>
+<p>₹200</p>
+<button onclick="addToCart('Margherita Pizza',200)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="paneer.jpg">
+<h4>Paneer Pizza</h4>
+<p>₹280</p>
+<button onclick="addToCart('Paneer Pizza',250)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="veg_pizzza.jpg">
+<h4>Veg Delight</h4>
+<p>₹230</p>
+<button onclick="addToCart('Veg Delight',230)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="peri.jpg">
+<h4>Peri peri Pizza</h4>
+<p>₹220</p>
+<button onclick="addToCart('Paneer Pizza',250)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="peppy.jpg">
+<h4>Peppy Pizza</h4>
+<p>₹300</p>
+<button onclick="addToCart('Paneer Pizza',250)">Add</button>
+</div>
+
+
+</div>
+
+<button class="slide-btn right" onclick="slideRight(this)">❯</button>
+</div>
+</div>
+
+
+<!-- Non Veg Pizzas -->
+<div class="category">
+<h3 class="h-cat">Non-Veg Pizzas 🍗</h3>
+
+<div class="slider">
+<button class="slide-btn left" onclick="slideLeft(this)">❮</button>
+
+<div class="menu-container">
+
+<div class="menu-item">
+<img src="chickenpizza.jpg">
+<h4>Chicken Pizza</h4>
+<p>₹300</p>
+<button onclick="addToCart('Chicken Pizza',300)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="Pepperoni.jpg">
+<h4>Pepperoni Pizza</h4>
+<p>₹350</p>
+<button onclick="addToCart('Pepperoni Pizza',350)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="BBQpiiza.jpg">
+<h4>BBQ Chicken Pizza</h4>
+<p>₹370</p>
+<button onclick="addToCart('BBQ Chicken Pizza',370)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="pepperoni.jpg">
+<h4>Spanish Sizzle Pizza</h4>
+<p>₹400</p>
+<button onclick="addToCart('Pepperoni Pizza',350)">Add</button>
+</div>
+
+
+
+</div>
+
+<button class="slide-btn right" onclick="slideRight(this)">❯</button>
+</div>
+</div>
+
+
+<!-- Burgers -->
+<div class="category">
+<h3 class="h-cat">Burgers 🍔</h3>
+
+<div class="slider">
+<button class="slide-btn left" onclick="slideLeft(this)">❮</button>
+
+<div class="menu-container">
+
+<div class="menu-item">
+<img src="vegburger.jpg">
+<h4>Veg Burger</h4>
+<p>₹120</p>
+<button onclick="addToCart('Veg Burger',120)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="chickenburger.jpg">
+<h4>Chicken Burger</h4>
+<p>₹150</p>
+<button onclick="addToCart('Chicken Burger',150)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="cheeseburger.jpg">
+<h4>Cheese Burger</h4>
+<p>₹160</p>
+<button onclick="addToCart('Cheese Burger',160)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="doubletikki.jpg">
+<h4>Double Tkki Burger</h4>
+<p>₹200</p>
+<button onclick="addToCart('Cheese Burger',160)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="periperiburger.jpg">
+<h4>Peri Peri Burger</h4>
+<p>₹180</p>
+<button onclick="addToCart('Cheese Burger',160)">Add</button>
+</div>
+
+</div>
+
+<button class="slide-btn right" onclick="slideRight(this)">❯</button>
+</div>
+</div>
+
+
+<!-- Combos -->
+<div class="category">
+<h3 class="h-cat">Combos 🍟🥤</h3>
+
+<div class="slider">
+<button class="slide-btn left" onclick="slideLeft(this)">❮</button>
+
+<div class="menu-container">
+
+<div class="menu-item">
+<img src="burgercombo.jpg">
+<h4>Burger Combo (coca cola , fries )</h4>
+<p>₹250</p>
+<button onclick="addToCart('Burger Combo',220)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="pizzaburger.jpg">
+<h4>Pizza Combo (Capsicum , onion , corn)</h4>
+<p>₹350</p>
+<button onclick="addToCart('Pizza Combo',350)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="family.jpg">
+<h4>Family Combo</h4>
+<p>₹650</p>
+<button onclick="addToCart('Family Combo',650)">Add</button>
+</div>
+
+</div>
+
+<button class="slide-btn right" onclick="slideRight(this)">❯</button>
+</div>
+</div>
+
+
+<!-- Drinks -->
+<div class="category">
+<h3 class="h-cat">Drinks 🥤</h3>
+
+<div class="slider">
+<button class="slide-btn left" onclick="slideLeft(this)">❮</button>
+
+<div class="menu-container">
+
+<div class="menu-item">
+<img src="cola.jpg">
+<h4>Coca Cola</h4>
+<p>₹50</p>
+<button onclick="addToCart('Coca Cola',50)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="sprite.jpg">
+<h4>Sprite</h4>
+<p>₹70</p>
+<button onclick="addToCart('Sprite',50)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="coldcoffee.jpg">
+<h4>Cold Coffee</h4>
+<p>₹120</p>
+<button onclick="addToCart('Cold Coffee',120)">Add</button>
+</div>
+
+<div class="menu-item">
+<img src="redbull.jpg">
+<h4>RedBull</h4>
+<p>₹110</p>
+<button onclick="addToCart('Coca Cola',50)">Add</button>
+</div>
+
+</div>
+
+<button class="slide-btn right" onclick="slideRight(this)">❯</button>
+</div>
+</div>
+<!-- CART SIDEBAR -->
+<!-- HORIZONTAL CART BAR -->
+<div id="cart" class="cart-bar">
+
+<h2>Your Cart</h2>
+
+<div id="cart-items" class="cart-items"></div>
+
+<div class="cart-summary">
+<h3>Total ₹<span id="total">0</span></h3>
+
+<button onclick="showCheckout()">Checkout</button>
+<button onclick="toggleCart()">Close</button>
+</div>
+
+<!-- DELIVERY DETAILS -->
+<div id="checkout-form" class="checkout-form">
+
+<h3>Delivery Details</h3>
+
+<input type="text" id="cust-name" placeholder="Full Name">
+<input type="text" id="cust-phone" placeholder="Phone Number">
+<textarea id="cust-address" placeholder="Delivery Address"></textarea>
+
+<h3>Select Payment</h3>
+
+<label><input type="radio" name="payment" value="UPI"> UPI</label>
+<label><input type="radio" name="payment" value="Card"> Card</label>
+<label><input type="radio" name="payment" value="COD"> Cash On Delivery</label>
+
+<br><br>
+<button onclick="placeOrder()">Place Order</button>
+
+</div>
+
+</div>
+
+<section id="order-history" class="history">
+<h2>Order History</h2>
+<div id="orders"></div>
+</section>
+
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-col">
+<h3>TastyBite 🍕</h3>
+<p>Delicious food delivered fast. Enjoy pizzas, burgers, drinks and more.</p>
+</div>
+
+<div class="footer-col">
+<h4>Quick Links</h4>
+<a href="#">Home</a>
+<a href="#menu">Menu</a>
+<a href="#cart">Cart</a>
+</div>
+
+<div class="footer-col">
+<h4>Contact</h4>
+<p>📍 Pune, Maharashtra</p>
+<p>📞 +91 98765 76545</p>
+<p>✉ tastybite@email.com</p>
+</div>
+
+<div class="footer-col">
+<h4>Follow Us</h4>
+<p>📘 Facebook</p>
+<p>📸 Instagram</p>
+<p>🐦 Twitter</p>
+</div>
+
+</div>
+
+<p class="footer-bottom">© 2025 TastyBite | Made for Competition 🍕</p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+

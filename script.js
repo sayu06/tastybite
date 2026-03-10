@@ -154,3 +154,16 @@ categories.forEach(btn => {
     }
   });
 });
+
+function toggleCart(){
+document.getElementById("cart").classList.toggle("active");
+}
+function slideLeft(btn){
+let container = btn.parentElement.querySelector(".menu-container");
+container.scrollBy({left:-300, behavior:"smooth"});
+}
+
+function slideRight(btn){
+let container = btn.parentElement.querySelector(".menu-container");
+container.scrollBy({left:300, behavior:"smooth"});
+}

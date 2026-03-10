@@ -1,158 +1,51 @@
-```html
+
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>TastyBite</title>
-<link rel="stylesheet" href="./style.css">
+<title>TastyBite Login</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="auth-body">
 
-<header>
+<div class="auth-box">
 
 <h1>TastyBite 🍕</h1>
+<h2>Login</h2>
 
-<nav>
-<a href="#">Home</a>
-<a href="#menu">Menu</a>
-<a href="#cart">Cart</a>
-</nav>
+<input type="email" id="email" placeholder="Enter Email">
 
-<div class="cart-icon" onclick="toggleCart()">
-🛒 <span id="cart-count">0</span>
-</div>
+<input type="password" id="password" placeholder="Enter Password">
 
-</header>
+<button onclick="login()">Login</button>
 
-
-<section class="banner">
-<img src="banner.jpg">
-</section>
-
-
-<section id="menu" class="menu">
-  <h2>Our Menu</h2>
-
-  <!-- Veg Pizzas -->
-  <button class="category-btn">Veg Pizzas 🍕</button>
-  <div class="menu-container">
-    <div class="menu-item">
-      <img src="margrita.jpg" alt="Margherita Pizza">
-      <h4>Margherita Pizza</h4>
-      <p>₹200</p>
-      <button onclick="addToCart('Margherita Pizza',200)">Add to Cart</button>
-    </div>
-
-    <div class="menu-item">
-      <img src="peppy.jpg" alt="Paneer Pizza">
-      <h4>Paneer Pizza</h4>
-      <p>₹250</p>
-      <button onclick="addToCart('Paneer Pizza',250)">Add to Cart</button>
-    </div>
-  </div>
-
-  <!-- Non-Veg Pizzas -->
-  <button class="category-btn">Non-Veg Pizzas 🍗</button>
-  <div class="menu-container">
-    <div class="menu-item">
-      <img src="chicken.jpg" alt="Chicken Pizza">
-      <h4>Chicken Pizza</h4>
-      <p>₹300</p>
-      <button onclick="addToCart('Chicken Pizza',300)">Add to Cart</button>
-    </div>
-
-    <div class="menu-item">
-      <img src="pepperoni.jpg" alt="Pepperoni Pizza">
-      <h4>Pepperoni Pizza</h4>
-      <p>₹350</p>
-      <button onclick="addToCart('Pepperoni Pizza',350)">Add to Cart</button>
-    </div>
-  </div>
-
-  <!-- Beverages -->
-  <button class="category-btn">Beverages 🥤</button>
-  <div class="menu-container">
-    <div class="menu-item">
-      <img src="cola.jpg" alt="Coca Cola">
-      <h4>Coca Cola</h4>
-      <p>₹50</p>
-      <button onclick="addToCart('Coca Cola',50)">Add to Cart</button>
-    </div>
-    <div class="menu-item">
-      <img src="sprite.jpg" alt="Sprite">
-      <h4>Sprite</h4>
-      <p>₹50</p>
-      <button onclick="addToCart('Sprite',50)">Add to Cart</button>
-    </div>
-  </div>
-
-  <!-- Desserts -->
-  <button class="category-btn">Desserts 🍰</button>
-  <div class="menu-container">
-    <div class="menu-item">
-      <img src="brownie.jpg" alt="Chocolate Brownie">
-      <h4>Chocolate Brownie</h4>
-      <p>₹100</p>
-      <button onclick="addToCart('Chocolate Brownie',100)">Add to Cart</button>
-    </div>
-    <div class="menu-item">
-      <img src="icecream.jpg" alt="Ice Cream">
-      <h4>Ice Cream</h4>
-      <p>₹80</p>
-      <button onclick="addToCart('Ice Cream',80)">Add to Cart</button>
-    </div>
-  </div>
-
-</section>
-<!-- CART SIDEBAR -->
-<div id="cart" class="cart">
-
-<h2>Your Cart</h2>
-
-<div id="cart-items"></div>
-
-<h3>Total ₹<span id="total">0</span></h3>
-
-<button onclick="showCheckout()">Checkout</button>
-<button onclick="toggleCart()">Close</button>
-
-<!-- DELIVERY DETAILS (hidden by default) -->
-<div id="checkout-form" style="display:none; margin-top:20px;">
-
-<h3>Delivery Details</h3>
-<input type="text" id="cust-name" placeholder="Full Name">
-<input type="text" id="cust-phone" placeholder="Phone Number">
-<textarea id="cust-address" placeholder="Delivery Address"></textarea>
-
-<h3>Select Payment</h3>
-<label><input type="radio" name="payment" value="UPI"> UPI</label>
-<label><input type="radio" name="payment" value="Card"> Card</label>
-<label><input type="radio" name="payment" value="COD"> Cash On Delivery</label>
-
-<br><br>
-<button onclick="placeOrder()">Place Order</button>
+<p>
+Don't have an account?
+<a href="register.html">Register Here</a>
+</p>
 
 </div>
 
-</div>
+<script>
 
+function login(){
 
-<section id="order-history" class="history">
-<h2>Order History</h2>
-<div id="orders"></div>
-</section>
+let email=document.getElementById("email").value
+let pass=document.getElementById("password").value
 
+if(email=="" || pass==""){
+alert("Please fill all fields")
+return
+}
 
-<footer>
+alert("Login Successful 🎉")
 
-<p>© 2025 TastyBite | Made for Competition 🍕</p>
+window.location.href="home.html"
 
-</footer>
+}
 
-
-<script src="script.js"></script>
+</script>
 
 </body>
 </html>
-```
+
